@@ -20,13 +20,10 @@
 
 <body>
     {{-- Navbar --}}
-    @include('layouts.user.navbar')
+    @include('layouts.header')
 
     {{-- Content --}}
     @yield('content')
-
-    {{-- Footer --}}
-    @include('layouts.user.footer')
 </body>
 
 </html>

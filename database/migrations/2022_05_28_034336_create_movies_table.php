@@ -14,15 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->id('movie_id')->primary();
-            $table->id('genre_id');
+            $table->id();
+            $table->foreignId('genre_id')->constrained();
             $table->string('title');
             $table->string('photo');
             $table->text('description');
             $table->integer('rating');
             $table->timestamps();
-
-            $table->foreign('genre_id')->references('genre_id')->on('users');
         });
     }
 

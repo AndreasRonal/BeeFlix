@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Episodes extends Model
+class Episode extends Model
 {
     use HasFactory;
+
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
+    }
 }

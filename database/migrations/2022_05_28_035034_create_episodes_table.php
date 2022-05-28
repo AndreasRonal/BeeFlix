@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('episodes', function (Blueprint $table) {
-            $table->id('episode_id')->primary();
-            $table->id('movie_id');
+            $table->id();
+            $table->foreignId('movie_id')->constrained();
             $table->integer('episode');
             $table->string('title');
             $table->timestamps();
-
-            $table->foreign('movie_id')->references('movie_id')->on('movies');
         });
     }
 

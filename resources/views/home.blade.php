@@ -1,23 +1,29 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="d-flex justify-content-center mt-5">
-        <div class="top-banner">
-            <h1>Find Your Future Home</h1>
-            <form action="{{ route('search') }}" method="POST">
-                @csrf
-                <div class="search-group d-flex">
-                    <div class="col-10 me-2">
-                        <input type="text" class="form-control" id="search" name="search"
-                            placeholder="Enter a City, Property Type, Buy or Rent..." required>
-                    </div>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
+    @foreach ($genres as $genre)
+        <div class="card" style="background-color: #90c7ff">
+            <h5 class="card-header text-center" style="background-color: #b9dcfe">
+                <a href="/genre/{{ $genre->id }}" class="text-decoration-none" style="color: black">{{ $genre->name }}</a>
+            </h5>
+
+            <div class="card-body">
+                <div class="card-group">
+                    @foreach ($movies as $movie)
+                        @if ($movie->genre_id == $genre->id)
+                        <div class="card">
+                            <img src="{{ $movie->photo }}" class="card-img-top" style="height: 400px">
+                            <div class="card-body" style="background-color: #daecfe">
+                                <h5 class="card-title text-center">{{ $movie->title }}</h5>
+                            </div>
+                            <div class="card-footer text-center" style="background-color: gray">
+                                <a class="text-decoration-none" href="/movie/{{ $movie->id }}" role="button" style="color: #90c7ff">LIHAT FILM</a>
+                            </div>
+                        </div>
+                        @endif
+                    @endforeach
                 </div>
-
-            </form>
+            </div>
         </div>
-
-    </div>
+    @endforeach
 @endsection
